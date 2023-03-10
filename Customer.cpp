@@ -1,4 +1,4 @@
-// Customer.cc
+﻿// Customer.cc
 #include <sstream>
 #include <vector>
 #include "Customer.h"
@@ -8,12 +8,15 @@ using std::vector;
 
 std::string Customer::statement()
 {
+  // 프라이빗 멤버로 잡아도 될 것 같은데..
   double totalAmount = 0.;
   int frequentRenterPoints = 0;
 
-  std::vector< Rental >::iterator iter = customerRentals.begin();
-  std::vector< Rental >::iterator iter_end = customerRentals.end();
+  // 반복문 안에 바로 써도 되지 않을까
+  std::vector< Rental >::iterator iter = m_customerRentals.begin();
+  std::vector< Rental >::iterator iter_end = m_customerRentals.end();
 
+  // 최종 내역만 출력하는 함수로 빼도 괜찮아보임
   // result will be returned by statement()
   std::ostringstream result;
   result << "Rental Record for " << getName() << "\n";
@@ -24,6 +27,8 @@ std::string Customer::statement()
     double thisAmount = 0.;
     Rental each = *iter;
 
+    // 대여 기간 별로 가격을 출력하는 함수로 빼도 괜찮아보임
+    // 새로운 장르도 추가하고
     // Determine amounts for each rental
     switch ( each.getMovie().getPriceCode() ) {
 

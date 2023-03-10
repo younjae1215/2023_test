@@ -1,4 +1,4 @@
-// Rental.hh
+﻿// Rental.hh
 #ifndef RENTAL_H
 #define RENTAL_H
 #include "Movie.h"
@@ -11,16 +11,17 @@ public:
   const Movie& getMovie() const;
 
 private:
-  Movie rentedMovie;
-  int nDaysRented;
+  Movie m_rentedMovie;
+  int m_nDaysRented;
 };
 
+// daysRented는 왜 const가 아닐까
 inline Rental::Rental( const Movie& movie, int daysRented ):
-  rentedMovie( movie ),
-  nDaysRented( daysRented ) {}
+	m_rentedMovie( movie ),
+	m_nDaysRented( daysRented ) {}
 
-inline int Rental::getDaysRented() const { return nDaysRented; }
+inline int Rental::getDaysRented() const { return m_nDaysRented; }
 
-inline const Movie& Rental::getMovie() const { return rentedMovie; }
+inline const Movie& Rental::getMovie() const { return m_rentedMovie; }
 
 #endif // RENTAL_H

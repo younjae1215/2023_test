@@ -1,4 +1,4 @@
-#include <iostream>
+Ôªø#include <iostream>
 #include "Customer.h"
 #include "Movie.h"
 
@@ -6,13 +6,13 @@ using namespace std;
 
 int main()
 {
-    Movie regular1{ "¿œπ› 1", Movie::REGULAR };
-    Movie regular2{ "¿œπ› 2", Movie::REGULAR };
-    Movie newRelease1{ "Ω≈¿€ 1", Movie::NEW_RELEASE };
-    Movie newRelease2{ "Ω≈¿€ 2",Movie::NEW_RELEASE };
-    Movie children1{ "æÓ∏∞¿Ã 1", Movie::CHILDRENS };
-    Movie children2{ "æÓ∏∞¿Ã 2", Movie::CHILDRENS };
-    Customer customer{ "∞Ì∞¥" };
+    Movie regular1{ "ÏùºÎ∞ò 1", Movie::REGULAR };
+    Movie regular2{ "ÏùºÎ∞ò 2", Movie::REGULAR };
+    Movie newRelease1{ "Ïã†Ïûë 1", Movie::NEW_RELEASE };
+    Movie newRelease2{ "Ïã†Ïûë 2",Movie::NEW_RELEASE };
+    Movie children1{ "Ïñ¥Î¶∞Ïù¥ 1", Movie::CHILDRENS };
+    Movie children2{ "Ïñ¥Î¶∞Ïù¥ 2", Movie::CHILDRENS };
+    Customer customer{ "Í≥†Í∞ù" };
 
     customer.addRental({ regular1, 2 });
     customer.addRental({ regular2, 3 });
