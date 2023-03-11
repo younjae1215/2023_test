@@ -69,3 +69,58 @@ std::string Customer::statement()
 
   return result.str();
 }
+
+std::string Customer::newStatement()
+{
+    std::ostringstream result;
+    result << "Rental Record for " << getName() << "\n";
+
+    // 장르 제목 대여기간 가격
+    const int size = m_customerRentals.size();
+
+    for (int i = 0; i < size; ++i)
+    {
+        auto title_ = m_customerRentals[i].getMovie().getTitle();
+        auto genre_ = m_customerRentals[i].getMovie().getPriceCode();
+        auto daysRented_ = m_customerRentals[i].getDaysRented();
+        auto amount_ = getAmount(genre_, daysRented_);
+        
+        // Show figures for this rental
+        result << "\t" << m_customerRentals[i].getMovie().getGenreString(genre_) << "\t" << title_ << "\t"
+            << daysRented_ << "\t" << amount_ << std::endl;
+    }
+
+    return result.str();
+}
+
+double Customer::getAmount(int code, int dayRented)
+{
+    double thisAmount = 0.;
+
+    switch (code) {
+
+    case Movie::REGULAR:
+        thisAmount += 2.;
+        if (dayRented > 2)
+            thisAmount += (dayRented - 2) * 1.5;
+        break;
+
+    case Movie::NEW_RELEASE:
+        thisAmount += dayRented * 3;
+        break;
+
+    case Movie::CHILDRENS:
+        thisAmount += 1.5;
+        if (dayRented > 3)
+            thisAmount += (dayRented - 3) * 1.5;
+        break;
+
+    case Movie::EXAMPLE_GENRE:
+        thisAmount += 2.5;
+        if (dayRented > 2)
+            thisAmount += (dayRented - 1) * 1.5;
+        break;
+    }
+
+    return thisAmount;
+}
