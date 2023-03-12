@@ -19,8 +19,6 @@ public:
 	  EXAMPLE_GENRE,
   };
 
-  const std::vector<std::string> m_genre_str{ "REGULAR", "NEW_RELEASE", "CHILDREN", "EXAMPLE_GENRE" };
-
   // 장르 기본 일반
   Movie( const std::string& title, int priceCode = REGULAR );
 
@@ -32,6 +30,8 @@ public:
 private:
   std::string m_movieTitle;
   int m_moviePriceCode;
+  const std::vector<std::string> m_genre_str{ "REGULAR", "NEW_RELEASE", "CHILDREN", "EXAMPLE_GENRE" };
+
 };
 
 inline Movie::Movie( const std::string& title, int priceCode ): 

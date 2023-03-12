@@ -15,8 +15,7 @@ private:
   int m_nDaysRented;
 };
 
-// daysRented는 왜 const가 아닐까
-inline Rental::Rental( const Movie& movie, int daysRented ):
+inline Rental::Rental( const Movie& movie, const int daysRented ):
 	m_rentedMovie( movie ),
 	m_nDaysRented( daysRented ) {}
 

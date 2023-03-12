@@ -67,7 +67,57 @@ std::string Customer::statement()
   result << "You earned " << frequentRenterPoints
          << " frequent renter points";
 
+  result << std::endl << newStatement() << std::endl;
+
   return result.str();
+}
+
+std::string Customer::statement_()
+{
+    updateCustomerData();
+    return printReceipt();
+}
+
+void Customer::updateCustomerData()
+{
+    // Loop over customer's rentals
+    for (auto each : m_customerRentals)
+    {
+        auto genre_ = each.getMovie().getPriceCode();
+        auto daysRented_ = each.getDaysRented();
+        auto thisAmount = getAmount(genre_, daysRented_);
+        m_totalAmount.emplace_back(thisAmount);
+ 
+        // Add frequent renter points
+        m_renterPoint++;
+
+        // Add bonus for a two day new release rental
+        if ((genre_ == Movie::NEW_RELEASE) && daysRented_ > 1) m_renterPoint++;
+    }
+}
+
+std::string Customer::printReceipt()
+{
+    // result will be returned by statement()
+    std::ostringstream result;
+    result << "Rental Record for " << getName() << "\n";
+
+    int i = 0;
+    float sum = 0;
+    for (auto each : m_customerRentals)
+    {
+        result << "\t" << each.getMovie().getTitle() << "\t"
+            << m_totalAmount[i] << std::endl;
+        sum += m_totalAmount[i];
+        i++;
+    }
+
+    // Add footer lines
+    result << "Amount owed is " << sum << "\n";
+    result << "You earned " << m_renterPoint
+        << " frequent renter points";
+
+    return result.str();
 }
 
 std::string Customer::newStatement()
@@ -80,22 +130,23 @@ std::string Customer::newStatement()
 
     for (int i = 0; i < size; ++i)
     {
-        auto title_ = m_customerRentals[i].getMovie().getTitle();
-        auto genre_ = m_customerRentals[i].getMovie().getPriceCode();
+        auto movie_ = m_customerRentals[i].getMovie();
+        auto title_ = movie_.getTitle();
+        auto genre_ = movie_.getPriceCode();
         auto daysRented_ = m_customerRentals[i].getDaysRented();
         auto amount_ = getAmount(genre_, daysRented_);
         
         // Show figures for this rental
-        result << "\t" << m_customerRentals[i].getMovie().getGenreString(genre_) << "\t" << title_ << "\t"
+        result << "\t" << movie_.getGenreString(genre_) << "\t" << title_ << "\t"
             << daysRented_ << "\t" << amount_ << std::endl;
     }
 
     return result.str();
 }
 
-double Customer::getAmount(int code, int dayRented)
+float Customer::getAmount(int code, int dayRented)
 {
-    double thisAmount = 0.;
+    float thisAmount = 0.;
 
     switch (code) {
 
