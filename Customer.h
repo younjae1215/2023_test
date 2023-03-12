@@ -19,16 +19,13 @@ public:
   std::string getName() const;
 
   // Generate a statement for the customer
-  //std::string statement();
-  std::string statement_();
+  std::string statement();
 
   // 새로운 출력형식 추가
-  std::string newStatement();
+  std::string printReceipt_();
 
   std::string printReceipt();
   void updateCustomerData();
-
-  float getAmount(int priceCode, int daysRented);
 
 private:
   std::string m_customerName;

@@ -21,7 +21,7 @@ int main()
     customer.addRental({ children1, 3 });
     customer.addRental({ children2, 4 });
 
-    cout << customer.statement_() << endl;
+    cout << customer.statement() << endl;
 
     return 0;
 }
