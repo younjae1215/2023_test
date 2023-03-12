@@ -22,26 +22,26 @@ public:
   // 장르 기본 일반
   Movie( const std::string& title, int priceCode = REGULAR );
 
-  int getPriceCode() const;
-  void setPriceCode( int arg );
+  int getGenre() const;
+  void setGenre( int arg );
   std::string getTitle() const;
   std::string getGenreString(int genre) const;
 
 private:
   std::string m_movieTitle;
-  int m_moviePriceCode;
+  int m_movieGenre;
   const std::vector<std::string> m_genre_str{ "REGULAR", "NEW_RELEASE", "CHILDREN", "EXAMPLE_GENRE" };
 
 };
 
-inline Movie::Movie( const std::string& title, int priceCode ): 
+inline Movie::Movie( const std::string& title, int Genre):
 	m_movieTitle( title ),
-	m_moviePriceCode( priceCode )
+	m_movieGenre(Genre)
 {}
 
-inline int Movie::getPriceCode() const { return m_moviePriceCode; }
+inline int Movie::getGenre() const { return m_movieGenre; }
 
-inline void Movie::setPriceCode( int arg ) { m_moviePriceCode = arg; }
+inline void Movie::setGenre( int arg ) { m_movieGenre = arg; }
 
 inline std::string Movie::getTitle() const { return m_movieTitle; }
 

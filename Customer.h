@@ -19,7 +19,7 @@ public:
   std::string getName() const;
 
   // Generate a statement for the customer
-  std::string statement();
+  //std::string statement();
   std::string statement_();
 
   // 새로운 출력형식 추가
