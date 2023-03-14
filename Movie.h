@@ -6,12 +6,6 @@
 
 class Movie {
 public:
-  // 얘네만 따로 enum해도 괜찮을듯
-  //static const int CHILDRENS   = 2;
-  //static const int REGULAR     = 0;
-  //static const int NEW_RELEASE = 1;
-  //static const int EXAMPLE_GENRE = 3;
-
   enum Genre {
 	  REGULAR = 0,
 	  NEW_RELEASE,

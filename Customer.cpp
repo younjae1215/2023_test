@@ -17,7 +17,7 @@ std::string Customer::statement()
 void Customer::updateCustomerData()
 {
     // Loop over customer's rentals
-    for (auto each : m_customerRentals)
+    for (auto& each : m_customerRentals)
     {
         auto genre_ = each.getMovie().getGenre();
         auto daysRented_ = each.getDaysRented();
@@ -40,7 +40,7 @@ std::string Customer::printReceipt()
 
     int i = 0;
     float sum = 0;
-    for (auto each : m_customerRentals)
+    for (const auto& each : m_customerRentals)
     {
         result << "\t" << each.getMovie().getTitle() << "\t"
             << m_totalAmount[i] << std::endl;
